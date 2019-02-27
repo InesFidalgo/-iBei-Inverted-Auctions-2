@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The core configuration file for the framework is the default (struts.xml) file
+and should reside on the classpath of the webapp (generally /WEB-INF/classes). -->
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+  <!-- devMode equals debug information and reload everything for every request -->
+  <constant name="struts.devMode" value="true" />
+  <constant name="struts.ui.theme" value="simple" />
+  <constant name="struts.action.excludePattern" value="/ws"/>
+
+  <package name="primes" extends="struts-default">
+	
+	<default-action-ref name="index" />
+	
+	<global-results>
+		<result name="error">/error.jsp</result>
+	</global-results>
+
+	<!-- all exceptions not caught by the application will lead to error.jsp -->
+	<global-exception-mappings>
+		<exception-mapping exception="java.lang.Exception" result="error" />
+	</global-exception-mappings>
+
+	<!-- 'index' action leads to the view provided by index.jsp -->
+    <action name="index">
+      <result>/index.jsp</result>
+    </action>
+	
+	 <action name="login" class="src.Login.LoginAction" method="execute">
+                        <result name="loginError">/login.jsp</result>
+                        <result name="loginSuccess">/menu.jsp</result>
+                        
+                        
+    </action>
+     <action name="logout" class="src.Logout.LogoutAction" method="execute">
+                       
+                        <result name="logoutSuccess">/index.jsp</result>
+    </action>
+     <action name="loginAdmin" class="src.LoginAdmin.LoginAction" method="execute">
+                        <result name="loginError">/login.jsp</result>
+                        <result name="loginSuccess">/menuadmin.jsp</result>
+    </action>
+    <action name="register" class="src.Register.RegisterAction" method="execute">
+                        <result name="registerError">/register.jsp</result>
+                        <result name="registerSuccess">/index.jsp</result>
+    </action>
+    <action name="registerAdmin" class="src.RegisterAdmin.RegisterAction" method="execute">
+                        <result name="registerError">/registeradmin.jsp</result>
+                        <result name="registerSuccess">/index.jsp</result>
+    </action>
+	<!-- 'primes' action calls 'execute' in 'PrimesAction', followed by the view in 'primes.jsp' -->
+    <action name="createLeilao" class="src.CreateLeilao.CriarLeilao" method="execute">
+      <result name="createLeilaoSuccess">/createLeilao.jsp</result>
+      <result name="createLeilaoError">/createLeilao.jsp</result>
+      
+    </action>
+     <action name="cancelarLeilao" class="src.CancelarLeilao.CancelarLeilao" method="execute">
+      <result name="cancelarLeilaoSuccess">/cancelarLeilao.jsp</result>
+      <result name="cancelarLeilaoError">/cancelarLeilao.jsp</result>
+    </action>
+     <action name="searchLeilao" class="src.SearchLeilao.SearchLeilao" method="execute">
+      <result name="searchLeilaoSuccess">/searchLeilao.jsp</result>
+      <result name="searchLeilaoError">/searchLeilao.jsp</result>
+      
+    </action>
+     <action name="banirUtilizador" class="src.BanirUtilizador.BanirUtilizador" method="execute">
+      <result name="banirUtilizadorSuccess">/banidocomsucesso.jsp</result>
+      <result name="banirUtilizadorError">/menuadmin.jsp</result>
+    </action>
+    
+    
+     
+     <action name="actividadeAntiga" class="src.ActividadeAntiga.ActividadeAntiga" method="execute">
+      <result name="actividadeAntigaSuccess">/actividadeAntiga.jsp</result>
+      <result name="actividadeAntigaError">/menu.jsp</result>
+    </action>
+    
+    <action name="imprimesearch">
+      <result>/imprimesearch.jsp</result>
+    </action>
+    
+     <action name="searchLeilaoDetalhe" class="src.SearchLeilaoDetalhe.SearchLeilaoDetalhe" method="execute">
+      <result name="searchLeilaoDetalheSuccess">/searchLeilaoDetalhe.jsp</result>
+      <result name="searchLeilaoDetalheError">/menu.jsp</result>
+    </action>
+
+    <action name="imprimesearchdetalhe">
+      <result>/imprimesearchdetalhe.jsp</result>
+    </action>
+    
+   
+     <action name="leiloesDezDias" class="src.LeiloesDezDias.LeiloesDezDias" method="execute">
+      <result name="leiloesDezDiasSuccess">/leiloesDezDias.jsp</result>
+      <result name="leiloesDezDiasError">/estatisticas.jsp</result>
+    </action>
+    
+     <action name="mensagemLeilao" class="src.mensagemLeiloes.mensagemLeilao" method="execute">
+      <result name="enviaSuccess">/mensagemLeilao.jsp</result>
+      <result name="enviaError">/menu.jsp</result>
+    </action>
+   
+    <action name="searchLeilaoUser" class="src.SearchLeilaoUser.SearchLeilaoUser" method="execute">
+      <result name="searchLeilaoUserSuccess">/searchLeilaoUser.jsp</result>
+      <result name="searchLeilaoUserError">/menu.jsp</result>
+    </action>
+    
+     <action name="editarLeilao" class="src.EditarLeilao.EditarLeilao" method="execute">
+      <result name="editarLeilaoSuccess">/menu.jsp</result>
+       <result name="editarLeilaoError">/menu.jsp</result>
+    </action>
+    <action name="licitacoes" class="src.Licitacoes.Licitacoes" method="execute">
+      <result name="licitacoesSuccess">/licitacoesLeilao.jsp</result>
+       <result name="licitacoesError">/licitacoesLeilao.jsp</result>
+    </action>
+    
+    
+     <action name="listarMyLici" class="src.ListarMyLici.ListarMyLici" method="execute">
+      <result name="listarMyLiciSuccess">/mylici.jsp</result>
+      <result name="listarMyLiciError">/menu.jsp</result>
+    </action>
+    
+     <action name="top10LeiloesCriados" class="src.Top10LeiloesCriados.Top10LeiloesCriados" method="execute">
+      <result name="top10LeiloesCriadosSuccess">/top10criadores.jsp</result>
+      <result name="top10LeiloesCriadosError">/estatisticas.jsp</result>
+    </action>
+    
+     <action name="top10LeiloesGanhos" class="src.Top10LeiloesGanhos.Top10LeiloesGanhos" method="execute">
+      <result name="top10LeiloesGanhosSuccess">/top10ganhos.jsp</result>
+      <result name="top10LeiloesGanhosError">/estatisticas.jsp</result>
+    </action>
+    <action name="imprimesearchuser">
+      <result>/imprimesearchuser.jsp</result>
+    </action>
+    
+    
+     <action name="listarUsersOnline" class="src.ListarUsersOnline.ListarUsersOnline" method="execute">
+      <result name="listarUsersOnlineSuccess">/listarUsersOnline.jsp</result>
+    </action>
+    
+    <action name="listarVersoesAntigas" class="src.ListarVersoesAntigas.ListarVersoesAntigas" method="execute">
+      <result name="listarVersoesAntigasSuccess">/listarVersoesAntigas.jsp</result>
+       <result name="listarVersoesAntigasError">/listarVersoesAntigas.jsp</result>
+      
+    </action>
+    
+       <!-- FACEBOOK!!!!!!!!!!!-->
+    <action name="loginFacebook" class="FacebookLogin.login" method="execute">
+      <result name="loginFaceSuccess">${authorizationUrl}</result>
+      <result name="loginFaceSuccess2">/Face.jsp</result>
+      <result name="loginFaceSuccess3">/menuadmin.jsp</result>
+      <result name="loginFaceSuccess4">/menu.jsp</result>
+      <result name="loginFaceFail">/index.jsp</result>
+    </action>
+
+    <action name="FacebookLoginInside" class="FacebookLoginInside.LogInside" method="execute">
+      <result name="tryLoginInsideSuccess">/Associado.jsp</result>
+      <result name="tryLoginInsideFail">/index.jsp</result>
+      <result name="loginFaceSuccess2">/Face.jsp</result>
+    </action>
+
+    <action name="FacebookLoginAdmin" class="FacebookLoginAdmin.LogAdmin" method="execute">
+      <result name="tryLoginInsideSuccess">/Associado.jsp</result>
+      <result name="tryLoginInsideFail">/index.jsp</result>
+      <result name="loginFaceSuccess2">/Face.jsp</result>
+    </action>
+    <!-- FACEBOOK!!!!!!!!!!!-->
+    
+    
+    
+
+  </package>
+
+</struts>
